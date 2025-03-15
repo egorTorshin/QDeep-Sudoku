@@ -20,8 +20,7 @@ import sys
 import copy
 
 from dimod.generators.constraints import combinations
-from hybrid.reference import KerberosSampler
-
+from neal import SimulatedAnnealingSampler
 
 def get_label(row, col, digit):
     """Returns a string of the cell coordinates and the cell value in a
@@ -154,7 +153,7 @@ def build_bqm(matrix):
 
 def solve_sudoku(bqm, matrix):
     """Solve BQM and return matrix with solution."""
-    solution = KerberosSampler().sample(bqm,
+    solution = SimulatedAnnealingSampler().sample(bqm,
                                         max_iter=10,
                                         convergence=3,
                                         qpu_params={'label': 'Example - Sudoku'})
